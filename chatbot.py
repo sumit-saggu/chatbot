@@ -24,11 +24,26 @@ while True:
         continue
 
     userInput = userInput.split()
-    ls = [ "open","start", "launch", "run"]
+    ls = ["open","start", "launch", "run"]
     #For exit from the chatbot
     if "bye" in userInput:
         print("Bot: Goodbye! Have a great day!")
         break
+
+    #For searching in wikipedia
+    elif "wikipedia" in userInput:
+        searchQuery = " ".join(userInput)
+        if searchQuery:
+            print(f"Bot: Searching Wikipedia for '{searchQuery}'...")
+            try:
+                summary = wikipedia.summary(searchQuery, sentences=2)
+                print(f"Bot: {summary}")
+            except wikipedia.exceptions.DisambiguationError as e:
+                print(f"Bot: The term '{searchQuery}' is ambiguous. Please be more specific.")
+            except wikipedia.exceptions.PageError:
+                print(f"Bot: No Wikipedia page found for '{searchQuery}'.")
+        else:
+            print("Bot: Please provide a search term for Wikipedia.")
 
     #For searching in google
     elif "search" in userInput:
@@ -48,23 +63,9 @@ while True:
         else:
             print("Bot: Please provide a search term for the video.")
 
-    #For searching in wikipedia
-    elif "wikipedia" in userInput:
-        searchQuery = " ".join(userInput)
-        if searchQuery:
-            print(f"Bot: Searching Wikipedia for '{searchQuery}'...")
-            try:
-                summary = wikipedia.summary(searchQuery, sentences=2)
-                print(f"Bot: {summary}")
-            except wikipedia.exceptions.DisambiguationError as e:
-                print(f"Bot: The term '{searchQuery}' is ambiguous. Please be more specific.")
-            except wikipedia.exceptions.PageError:
-                print(f"Bot: No Wikipedia page found for '{searchQuery}'.")
-        else:
-            print("Bot: Please provide a search term for Wikipedia.")
 
     #For opening websites
-    elif "open web" in userInput:
+    elif "web" in userInput:
         webName = " ".join(userInput[2:])
         if webName:
             try:
