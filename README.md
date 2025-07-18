@@ -85,7 +85,3 @@ It can search Google, play YouTube videos, fetch Wikipedia summaries, open websi
 - The chatbot is case-insensitive and works in the terminal/command prompt.
 
 ---
-
-## 📄 License
-
-This project is for personal and
